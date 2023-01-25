@@ -14,15 +14,21 @@ public class Cat
 
     public void kill(int numLives)
     {
+        int i;
+
+        for(i=0; i<9; i++)
+        {
 
         if (numLives > 0) 
         {
-          numLives = numLives - 1;
+          
           System.out.println("Ouch");
+          --numLives;
         }
         else if( numLives == 0 ) 
         {
             System.out.println("Dead");
+        }
         }
     }
 

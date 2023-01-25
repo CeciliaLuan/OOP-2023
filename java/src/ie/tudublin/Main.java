@@ -9,10 +9,8 @@ public class Main
 
 		Cat ginger = new Cat();
 		ginger.setName("Ginger");
-		for(i=0; i < 8; i++)
-		{
-			ginger.kill(9);
-		}
+		ginger.kill(9);
+		
 		
 		
 	}
