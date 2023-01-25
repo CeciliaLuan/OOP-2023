@@ -4,11 +4,17 @@ public class Main
 {
 	public static void main(String[] args)
 	{
-		System.out.println("Hello world");
+		int i;
+
+
+		Cat ginger = new Cat();
+		ginger.setName("Ginger");
+		for(i=0; i < 8; i++)
+		{
+			ginger.kill(9);
+		}
 		
-		Dog penny = new Dog();
-		penny.setName("Penny");
-		penny.speak();
+		
 	}
 	
 }
