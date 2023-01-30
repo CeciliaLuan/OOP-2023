@@ -2,7 +2,7 @@ package ie.tudublin;
 
 public class Cat
 {
-    int numLives = 9;
+    int numLives;
     String name;
 
 
@@ -11,25 +11,38 @@ public class Cat
 		this.name = name;
 	}
 
+    public Cat()
+    {
+      numLives = 9;
+    }
+
+    public void setLives(int numLives){
+        this.numLives = numLives;
+    }
+
 
     public void kill(int numLives)
     {
-        int i;
+         int i;
+        
 
-        for(i=0; i<9; i++)
-        {
+        for(i= 0; i < 10; i++){
+
+        
+         numLives -= 1;
+       
 
         if (numLives > 0) 
         {
           
           System.out.println("Ouch");
-          --numLives;
+          
         }
-        else if( numLives == 0 ) 
+        else if( numLives == 0 )   
         {
             System.out.println("Dead");
         }
-        }
+      }   
     }
 
     

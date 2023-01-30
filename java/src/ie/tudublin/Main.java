@@ -4,11 +4,11 @@ public class Main
 {
 	public static void main(String[] args)
 	{
-		int i;
+       
 
-
-		Cat ginger = new Cat();
-		ginger.setName("Ginger");
+		
+        Cat ginger = new Cat();
+		ginger.setName("ginger");
 		ginger.kill(9);
 		
 		
