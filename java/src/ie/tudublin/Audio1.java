@@ -8,10 +8,12 @@ import processing.core.PApplet;
 
 public class Audio1 extends PApplet
 {
+    float[] lerpedBuffer;
     Minim minim;
     AudioPlayer ap;
     AudioInput ai;
     AudioBuffer ab;
+  
 
     int mode = 0;
 
@@ -31,9 +33,7 @@ public class Audio1 extends PApplet
                 ap.play();
             }
         }
-        if (keyCode == '1'){
-
-        }
+     
 	}
 
     public void settings()
@@ -71,15 +71,12 @@ public class Audio1 extends PApplet
         off += 1;
         // Calculate sum and average of the samples
        
-        for(int i = 0; i < ab.size(); i++) {
-            sum += abs(ab.get(i));
-        }
-        average = sum / (float)ab.size();
-       
+        
         // Also lerp each element of buffer;
         for(int i = 0 ; i < ab.size() ; i ++)
         {
             sum += abs(ab.get(i));
+            //lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.05f);
         }
         average= sum / (float) ab.size();
 
@@ -102,7 +99,17 @@ public class Audio1 extends PApplet
                 break;
         case 1:
             background(0);            
+            for(int i = 0 ; i < ab.size() ; i ++)
+            {
+                //float c = map(ab.get(i), -1, 1, 0, 255);
+                float c = map(i, 0, ab.size(), 0, 255);
+                stroke(c, 255, 255);
+                
+                float f = lerpedBuffer[i] * halfH * 4.0f;
+                line(i, halfH + f, halfH - f, i);                    
+            }
             break;
+
 
         }
         
