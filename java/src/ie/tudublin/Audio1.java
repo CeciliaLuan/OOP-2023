@@ -31,6 +31,9 @@ public class Audio1 extends PApplet
                 ap.play();
             }
         }
+        if (keyCode == '1'){
+
+        }
 	}
 
     public void settings()
@@ -43,11 +46,11 @@ public class Audio1 extends PApplet
     {
         minim = new Minim(this);
         // Uncomment this to use the microphone
-        // ai = minim.getLineIn(Minim.MONO, width, 44100, 16);
-        // ab = ai.mix; 
+         //ai = minim.getLineIn(Minim.MONO, width, 44100, 16);
+         //ab = ai.mix; 
 
         // And comment the next two lines out
-        ap = minim.loadFile("heroplanet.mp3", 1024);
+       ap = minim.loadFile("heroplanet.mp3", 1024);
         ap.play();
         ab = ap.mix;
         colorMode(HSB);
@@ -67,6 +70,12 @@ public class Audio1 extends PApplet
         float sum = 0;
         off += 1;
         // Calculate sum and average of the samples
+       
+        for(int i = 0; i < ab.size(); i++) {
+            sum += abs(ab.get(i));
+        }
+        average = sum / (float)ab.size();
+       
         // Also lerp each element of buffer;
         for(int i = 0 ; i < ab.size() ; i ++)
         {
