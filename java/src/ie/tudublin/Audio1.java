@@ -8,7 +8,7 @@ import processing.core.PApplet;
 
 public class Audio1 extends PApplet
 {
-    float[] lerpedBuffer;
+   
     Minim minim;
     AudioPlayer ap;
     AudioInput ai;
@@ -57,10 +57,12 @@ public class Audio1 extends PApplet
 
         y = height / 2;
         smoothedY = y;
-
+        
+        lerpedBuffer = new float[width];
     }
 
     float off = 0;
+    float[] lerpedBuffer;
 
     public void draw()
     {
@@ -76,7 +78,7 @@ public class Audio1 extends PApplet
         for(int i = 0 ; i < ab.size() ; i ++)
         {
             sum += abs(ab.get(i));
-            //lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.05f);
+            lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.1f);
         }
         average= sum / (float) ab.size();
 
@@ -110,9 +112,42 @@ public class Audio1 extends PApplet
             }
             break;
 
+            case 2:
+            
+                background(0);            
+                for(int i = 0 ; i < ab.size() ; i ++)
+                {
+                    //float c = map(ab.get(i), -1, 1, 0, 255);
+                    float c = map(i, 0, ab.size(), mouseY/2 ,mouseY/2);
+                    stroke(c, 255, 255);
+                    
+                    float f = lerpedBuffer[i] * halfH * 4.0f;
+                    line(0,i,f,i);
+                    line(width,i,width - f,i);  
+                    line(i,0,i,f); 
+                    line(i,height,i,height -  f);                       
+                }
+                break;  
 
+            case 3:
+            background (0);
+            for(int i = 0 ; i < ab.size() ; i ++)
+                {
+                    //float c = map(ab.get(i), -1, 1, 0, 255);
+                    float c = map(i, 0, ab.size(), mouseY/2 ,mouseY/2);
+                    stroke(c, 255, 255);
+                    
+                    float f = lerpedBuffer[i] * halfH * 4.0f;
+                    
+                    rect(0, height - 1 , 433, width, 250);
+                    circle(i, halfH + f, 5);                    
+                    circle(i, halfH - f, 5);              
+                }
+                break;  
+
+            
         }
-        
+       
 
 
         
@@ -131,3 +166,5 @@ public class Audio1 extends PApplet
 
     }        
 }
+
+   
