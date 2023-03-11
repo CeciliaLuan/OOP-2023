@@ -31,8 +31,10 @@ public class LifeBoard {
             for (int j = -1 ; j <= 1 ; j ++)
             {
                 if (! (i == 0) && (j == 0))
+                if (! (i == 0 && j == 0))
                 {
                     if (getCell(i, j))
+                    if (getCell(row + i, col + j))
                     {
                         count ++;
                     }
@@ -54,15 +56,13 @@ public class LifeBoard {
                     if (count == 2 || count == 3)
                     {
                         next[row][col] = true;
+                        {
+                            next[row][col] = false;
+                        }
                     }
                     else
                     {
-                        next[row][col] = false;
-                    }
-                    
-                }
-                else
-                {
+              
                     if (count == 3)
                     {
                         next[row][col] = true;
@@ -74,11 +74,13 @@ public class LifeBoard {
                 }
 
                 // < 2 > 3 dies
-                // 2-3 survices
-                // dead with 3 neighboiurs comes to life
+                      // dead with 3 neighboiurs comes to life
             }
         }
+        }
         boolean[][] temp = board;
+        
+        temp = board;
         board = next;
         next = temp;
     }
