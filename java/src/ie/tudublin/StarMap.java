@@ -109,6 +109,6 @@ public class StarMap extends PApplet {
 		strokeWeight(1);		
 
 		drawGrid();
-		displayStars();
+		//displayStars();
 	}
 }

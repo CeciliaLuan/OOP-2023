@@ -2,6 +2,7 @@ package ie.tudublin;
 
 import processing.core.PApplet;
 import processing.core.PVector;
+import java.util.ArrayList;
 
 public class Ship {
     private PVector pos;
@@ -81,6 +82,39 @@ public class Ship {
         }
     }
 
+    public class AIShip extends Ship {
+        private ArrayList<PVector> path;
+        private int currentTargetIndex;
+        
+        public AIShip(float x, float y, float size, int c, PApplet p, ArrayList<PVector> path) {
+            super(x, y, size, c, p);
+            this.path = path;
+            this.currentTargetIndex = 0;
+        }
+        
+        public void set() {
+        ArrayList<PVector> path = new ArrayList<PVector>();
+			path.add(new PVector(100, 100));
+			path.add(new PVector(200, 200));
+			path.add(new PVector(300, 300));
+        }
+        public void move() {
+            // Check if we've reached the current target
+            if (PVector.dist(getPos(), path.get(currentTargetIndex)) < 5) {
+                currentTargetIndex++;
+                if (currentTargetIndex >= path.size()) {
+                    currentTargetIndex = 0;
+                }
+            }
+        
+            // Move towards the current target
+            PVector target = path.get(currentTargetIndex);
+            PVector dir = PVector.sub(target, getPos());
+            dir.normalize();
+            setPos(PVector.add(getPos(), dir));
+        }
+    }
+
     public void render()
     {
         p.pushMatrix();
@@ -94,6 +128,6 @@ public class Ship {
         p.popMatrix();
     }
 
-    
+
     
 }
